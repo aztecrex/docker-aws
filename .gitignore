@@ -1,0 +1,12 @@
+# project working dir
+.tmp
+
+
+# don't leak secrets
+*.aes
+*.env
+
+# mac mac mac
+.DS_Store
+
+
