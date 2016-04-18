@@ -1,0 +1,13 @@
+- service: aws
+  command: /bin/true
+
+- type: serial
+  tag: ^[^_]
+  service: aws
+  encrypted_dockercfg_path: dockercfg.encrypted
+  registry: https://index.docker.io/v1/
+  steps:
+    - type: push
+      tag: master
+      image_name:  cjengineering/aws
+      image_tag: latest

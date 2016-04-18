@@ -1,0 +1,6 @@
+aws:
+  build:
+    context_path: .
+    dockerfile_path: Dockerfile.aws
+
+
