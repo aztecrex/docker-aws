@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ "$1" = "" ]; then
+  cat <<EOI 1>&2
+Support for AWS CLI in container.  You can set the region in the AWS_REGION
+environment variable (defaults to "us-east-1"). Supports standard credential
+processing, including session and EC2 roles. Additionally, you can mount in an
+AWS credentials file and note its location with the AWS_CREDENTIALS_FILE
+environment variable and it will be provied to the CLI app if needed.
+EOI
+else
+  if [ "$1" = "aws" ]; then
+    shift
+    aws --region $AWS_REGION "$@"
+  else
+    exec "$@"
+  fi
+fi
