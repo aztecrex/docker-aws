@@ -11,7 +11,7 @@ MAINTAINER CJ Engineering
 #  awscli
 RUN  apk update \
   && apk upgrade \
-  && apk add curl bash py-pip \
+  && apk add curl bash python py-pip \
   && pip install awscli \
   && apk --purge -v del py-pip \
   && rm -rf /var/cache/apk/*

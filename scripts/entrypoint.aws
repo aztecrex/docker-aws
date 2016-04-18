@@ -2,9 +2,11 @@
 
 if [ "$1" = "" ]; then
   cat <<EOI 1>&2
-Support for AWS CLI in container.  You can set the region using the
-AWS_DEFAULT_REGION environment variable. If not set, the region is
-"us-east-1."
+Support for AWS CLI in container.  The container commands are sent to the
+AWS CLI application.
+
+You can set the region using the AWS_DEFAULT_REGION environment variable. If
+not set, the region is "us-east-1."
 
 Supports standard credential processing, including session and EC2 roles. You
 can mount a configuration file and/or shared credentials file and specify
@@ -15,12 +17,15 @@ A profile can be selected with the AWS_DEFAULT_PROFILE environment
 variable or with the --profile command option. A profile is only applicable if
 a configuration or credentials file is selected for use.
 
+The special command, "sh," runs bash
+
+Version info:
 EOI
+  exec aws --version
 else
-  if [ "$1" = "aws" ]; then
-    shift
-    aws --region $AWS_REGION "$@"
+  if [ "$1" = "sh" ]; then
+    exec /bin/bash
   else
-    exec "$@"
+    exec aws "$@"
   fi
 fi
