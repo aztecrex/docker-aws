@@ -19,7 +19,8 @@ RUN  apk update \
 
 COPY /scripts/entrypoint.aws /usr/local/bin/
 
-ENV AWS_REGION us-east-1
+ENV AWS_DEFAULT_REGION us-east-1
+
 
 ENTRYPOINT ["entrypoint.aws"]
 CMD [""]
