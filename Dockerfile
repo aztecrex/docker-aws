@@ -8,13 +8,10 @@ MAINTAINER CJ Engineering
 #  pip - install the awscli, gets removed
 #  curl - to fetch tarballs and stuff
 #  bash - for scripts
+#  awscli
 RUN  apk update \
   && apk upgrade \
   && apk add curl bash py-pip \
+  && pip install awscli \
+  && apk --purge -v del py-pip \
   && rm -rf /var/cache/apk/*
-
-# AWS CLI
-RUN  pip install awscli \
-  && apk --purge -v del py-pip
-
-
