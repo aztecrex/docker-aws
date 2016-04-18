@@ -9,6 +9,10 @@ AWS credentials file and note its location with the AWS_CREDENTIALS_FILE
 environment variable and it will be provied to the CLI app if needed.
 EOI
 else
+  if [ -f "$AWS_CREDENTIALS_FILE" ]; then
+    mkdir -p ~/.aws
+    cp "$AWS_CREDENTIALS_FILE" ~/.aws/credentials
+  fi
   if [ "$1" = "aws" ]; then
     shift
     aws --region $AWS_REGION "$@"
